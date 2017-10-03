@@ -100,7 +100,7 @@ int main()
   assert(p1->test_string("Bob: Did Anna peep? Anna: Did Bob?") == -1);
   std::cout << "Recur test 3 passed." << std::endl;
 
-/**
+
   // test 4: returning the correct position of the failed palindromes
   assert(p1->test_string("ab") == 1);
   assert(p1->test_string("abca") == 1);
@@ -122,5 +122,5 @@ int main()
 
   // cleanup
   delete p1;
-	*/
+	
 }

@@ -3,6 +3,11 @@
 #include "Queue.hpp"
 #include <ctype.h>
 
+/**
+ * @brief function tests string if it is a palindrom by iteration
+ * @param s the string to be tested
+ * @return -1 if it is a palindrome else returns position of the error
+ */
 int PalindromeI::test_string(const std::string &s)
 {
 	int stringSize = s.size();

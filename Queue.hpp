@@ -25,9 +25,18 @@ class Queue{
 		
 		T front() const;
 		
+		
+		/**
+		 * @brief Checks if Queue is empty	
+		 * @return true if queue is empty else returns false
+		 */
 		bool isEmpty() const
 		{return (numItems == 0);}
 		
+		/**
+		 * @brief returns size of the Queue
+		 * @return int indicating size of Queue
+		 */
 		int getSize() const
 		{return queueSize;}
 };
@@ -58,17 +67,35 @@ Queue<T>::~Queue()
 		delete [] queueArray;
 }
 
+/**
+ * @brief Copy constructor for the queue
+ * @param copy an Instance of another Queue to copy values from
+ */
 template <typename T>
 Queue<T>::Queue(const Queue& copy)
 {
-	//TODO finish copy constructor
-	queueArray = new T[copy.getSize()];
+	//allocate dynamic memory
+	if(copy.getSize() > 0)
+		queueArray = new T[copy.getSize()];
+	else
+		queueArray = nullptr;
+	
+	//assign values from copy to the queue's members
 	queueSize = copy.getSize();
+	
+	f = copy.f;
+	r = copy.r;
+	
+	numItems = copy.numItems;
+	
+	//copy the other queue arrays values
+	for(int count = 0; count < copy.getSize(); count++)
+		queueArray[count] = copy.queueArray[count];
 }
 
 /**
  * @brief adds element to queue
- * @param item
+ * @param item - the item being inserted
  */
 template <typename T>
 void Queue<T>::enqueue(T item)

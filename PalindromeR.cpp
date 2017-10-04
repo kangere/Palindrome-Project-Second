@@ -2,6 +2,11 @@
 #include <string>
 #include <ctype.h>
 
+/**
+ * @brief function tests if string passed is a palindrome or not using recursion
+ * @param s the string to be tested
+ * @return -1 if string is palindrom or 1 if it is not a palindrome
+ */
 int PalindromeR::test_string(const std::string &s)
 {
 	//create variable to store string

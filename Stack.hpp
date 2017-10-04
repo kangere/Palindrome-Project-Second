@@ -32,16 +32,28 @@ public:
 	
 	void displayContent();
 	
+	/**
+	 * @brief checks if stack is empty
+	 * @return true if the stack is empty else returns false
+	 */
 	bool isEmpty(){
 		return (top == nullptr);
 	}
 	
+	/**
+	 * @brief 
+	 * @return 
+	 */
 	int getSize(){
 		return stackSize;
 	}
 	
 };
 
+/**
+ * @brief adds item to the top of stack
+ * @param newItem - item to be added
+ */
 template <typename T>
 void Stack<T>::push(T newItem)
 {
@@ -67,12 +79,17 @@ void Stack<T>::push(T newItem)
 		}
 }
 
+/**
+ * @brief remove an element from the top of the stack
+ * @param item - the item to store the popped value
+ */
 template <typename T>
 void Stack<T>::pop(T& item)
 {
 	if(isEmpty())
 		return;
-		
+	
+	
 	Node *temp;
 	
 	
@@ -86,6 +103,9 @@ void Stack<T>::pop(T& item)
 	
 }
 
+/**
+ * @brief displays contents of the stack
+ */
 template< typename T>
 void Stack<T>::displayContent()
 {
@@ -101,6 +121,9 @@ void Stack<T>::displayContent()
 	}
 }
 
+/**
+ * @brief Destructor to avoid memory leaks
+ */
 template <typename T>
 Stack<T>::~Stack()
 {
@@ -113,6 +136,53 @@ Stack<T>::~Stack()
 		nextNode = nodePtr->next;
 		delete nodePtr;
 		nodePtr = nextNode;
+	}
+}
+
+/**
+ * @brief copy constructor
+ * @param copy the other stack to copy values from
+ */
+template <typename T>
+Stack<T>::Stack(const Stack &copy)
+{
+	if(copy.top == nullptr)
+	{ 
+		top = nullptr;
+		stackSize = 0;
+	}
+	else
+	{
+		//create pointer to point to copy
+		Node* nodePtr = copy.top;
+		
+		//create new node 
+		//assign value of copy to new node
+		Node* newNode = new Node;
+		newNode->item = nodePtr->item;
+		
+		//let top point to top node
+		top = newNode;
+		
+		//move to the next node
+		nodePtr = nodePtr->next;
+		
+		while(nodePtr)
+		{
+			//create new node
+			//move pointer to new node
+			newNode->next = new Node;
+			newNode = newNode->next;
+			
+			//assign value of copy
+			newNode->item = nodePtr->item;
+			
+			//move to the next node
+			nodePtr = nodePtr->next;
+		}
+		
+		newNode->next = nullptr;
+	
 	}
 }
 
